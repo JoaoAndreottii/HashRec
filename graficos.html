@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang='pt-BR'>
+<head>
+<meta charset='UTF-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0'>
+<title>Análise de Tabela Hash - Gráficos Interativos</title>
+<script src='https://cdn.jsdelivr.net/npm/chart.js'></script>
+<style>
+body{font-family:Arial,sans-serif;background:#f5f5f5;padding:20px;margin:0}
+h1{text-align:center;color:#333;margin-bottom:10px}
+h2{text-align:center;color:#666;font-size:18px;font-weight:normal;margin-top:0}
+.container{max-width:1400px;margin:0 auto}
+.chart-box{background:white;padding:20px;margin:20px 0;border-radius:8px;box-shadow:0 2px 4px rgba(0,0,0,0.1)}
+.chart-box h3{margin-top:0;color:#444;border-bottom:2px solid #4285f4;padding-bottom:10px}
+canvas{max-height:400px}
+.footer{text-align:center;margin-top:40px;color:#999;font-size:14px}
+</style>
+</head>
+<body>
+<div class='container'>
+<h1>Análise de Tabela Hash por Encadeamento Separado</h1>
+<h2>João Otávio Andreotti</h2>
+<div class='chart-box'>
+<h3>Gráfico 1: Colisões na Tabela vs Fator de Carga (?)</h3>
+<canvas id='chart1'></canvas>
+</div>
+<div class='chart-box'>
+<h3>Gráfico 2: Comparações em Buscas Bem-Sucedidas vs ?</h3>
+<canvas id='chart2'></canvas>
+</div>
+<div class='chart-box'>
+<h3>Gráfico 3: Comparações em Buscas Malsucedidas vs ?</h3>
+<canvas id='chart3'></canvas>
+</div>
+<div class='chart-box'>
+<h3>Gráfico 4: Tempo de Busca (Hits) vs ? (ms)</h3>
+<canvas id='chart4'></canvas>
+</div>
+<div class='chart-box'>
+<h3>Gráfico 5: Tempo de Busca (Misses) vs ? (ms)</h3>
+<canvas id='chart5'></canvas>
+</div>
+<div class='footer'>Gerado automaticamente por GeradorGraficos.java</div>
+</div>
+<script>
+const config={responsive:true,maintainAspectRatio:true,plugins:{legend:{display:true,position:'top'}}};
+new Chart(document.getElementById('chart1'),{type:'scatter',data:{datasets:[
+{label:'H_DIV',data:[{x:0.9910802775024777,y:374.0},{x:0.9910802775024777,y:356.0},{x:0.9910802775024777,y:358.0},{x:9.910802775024777,y:8991.0},{x:9.910802775024777,y:8991.0},{x:9.910802775024777,y:8991.0},{x:99.10802775024777,y:98991.0},{x:99.10802775024777,y:98991.0},{x:99.10802775024777,y:98991.0}],borderColor:'#4285f4',backgroundColor:'#4285f4',showLine:true},
+{label:'H_MUL',data:[{x:0.9910802775024777,y:367.0},{x:0.9910802775024777,y:374.0},{x:0.9910802775024777,y:400.0},{x:9.910802775024777,y:8991.0},{x:9.910802775024777,y:8991.0},{x:9.910802775024777,y:8991.0}],borderColor:'#ea4335',backgroundColor:'#ea4335',showLine:true},
+{label:'H_FOLD',data:[],borderColor:'#34a853',backgroundColor:'#34a853',showLine:true}
+]},options:{...config,scales:{x:{title:{display:true,text:'Fator de Carga (?)'}},y:{title:{display:true,text:'Colisões'}}}}});
+new Chart(document.getElementById('chart2'),{type:'scatter',data:{datasets:[
+{label:'H_DIV',data:[{x:0.9910802775024777,y:1},{x:0.9910802775024777,y:1},{x:0.9910802775024777,y:1},{x:9.910802775024777,y:7},{x:9.910802775024777,y:7},{x:9.910802775024777,y:7},{x:99.10802775024777,y:71},{x:99.10802775024777,y:71},{x:99.10802775024777,y:71}],borderColor:'#4285f4',backgroundColor:'#4285f4',showLine:true},
+{label:'H_MUL',data:[{x:0.9910802775024777,y:1},{x:0.9910802775024777,y:1},{x:0.9910802775024777,y:1},{x:9.910802775024777,y:7},{x:9.910802775024777,y:7},{x:9.910802775024777,y:7}],borderColor:'#ea4335',backgroundColor:'#ea4335',showLine:true},
+{label:'H_FOLD',data:[],borderColor:'#34a853',backgroundColor:'#34a853',showLine:true}
+]},options:{...config,scales:{x:{title:{display:true,text:'Fator de Carga (?)'}},y:{title:{display:true,text:'Comparações (Hits)'}}}}});
+new Chart(document.getElementById('chart3'),{type:'scatter',data:{datasets:[
+{label:'H_DIV',data:[{x:0.9910802775024777,y:1},{x:0.9910802775024777,y:1},{x:0.9910802775024777,y:1},{x:9.910802775024777,y:7},{x:9.910802775024777,y:7},{x:9.910802775024777,y:7},{x:99.10802775024777,y:75},{x:99.10802775024777,y:75},{x:99.10802775024777,y:75}],borderColor:'#4285f4',backgroundColor:'#4285f4',showLine:true},
+{label:'H_MUL',data:[{x:0.9910802775024777,y:1},{x:0.9910802775024777,y:1},{x:0.9910802775024777,y:1},{x:9.910802775024777,y:8},{x:9.910802775024777,y:7},{x:9.910802775024777,y:8}],borderColor:'#ea4335',backgroundColor:'#ea4335',showLine:true},
+{label:'H_FOLD',data:[],borderColor:'#34a853',backgroundColor:'#34a853',showLine:true}
+]},options:{...config,scales:{x:{title:{display:true,text:'Fator de Carga (?)'}},y:{title:{display:true,text:'Comparações (Misses)'}}}}});
+new Chart(document.getElementById('chart4'),{type:'scatter',data:{datasets:[
+{label:'H_DIV',data:[{x:0.9910802775024777,y:0.2086},{x:0.9910802775024777,y:0.0967},{x:0.9910802775024777,y:0.0833},{x:9.910802775024777,y:1.6713},{x:9.910802775024777,y:1.0205},{x:9.910802775024777,y:1.1699},{x:99.10802775024777,y:122.3229},{x:99.10802775024777,y:174.1468},{x:99.10802775024777,y:213.5388}],borderColor:'#4285f4',backgroundColor:'#4285f4',showLine:true},
+{label:'H_MUL',data:[{x:0.9910802775024777,y:0.0675},{x:0.9910802775024777,y:0.1494},{x:0.9910802775024777,y:0.1129},{x:9.910802775024777,y:0.9081},{x:9.910802775024777,y:1.3679},{x:9.910802775024777,y:1.305}],borderColor:'#ea4335',backgroundColor:'#ea4335',showLine:true},
+{label:'H_FOLD',data:[],borderColor:'#34a853',backgroundColor:'#34a853',showLine:true}
+]},options:{...config,scales:{x:{title:{display:true,text:'Fator de Carga (?)'}},y:{title:{display:true,text:'Tempo (ms)'}}}}});
+new Chart(document.getElementById('chart5'),{type:'scatter',data:{datasets:[
+{label:'H_DIV',data:[{x:0.9910802775024777,y:0.0822},{x:0.9910802775024777,y:0.0815},{x:0.9910802775024777,y:0.0817},{x:9.910802775024777,y:1.7451},{x:9.910802775024777,y:1.0012},{x:9.910802775024777,y:1.0587},{x:99.10802775024777,y:141.9059},{x:99.10802775024777,y:176.7899},{x:99.10802775024777,y:165.6336}],borderColor:'#4285f4',backgroundColor:'#4285f4',showLine:true},
+{label:'H_MUL',data:[{x:0.9910802775024777,y:0.0686},{x:0.9910802775024777,y:0.1263},{x:0.9910802775024777,y:0.191},{x:9.910802775024777,y:1.8049},{x:9.910802775024777,y:1.3814},{x:9.910802775024777,y:1.3973}],borderColor:'#ea4335',backgroundColor:'#ea4335',showLine:true},
+{label:'H_FOLD',data:[],borderColor:'#34a853',backgroundColor:'#34a853',showLine:true}
+]},options:{...config,scales:{x:{title:{display:true,text:'Fator de Carga (?)'}},y:{title:{display:true,text:'Tempo (ms)'}}}}});
+</script>
+</body>
+</html>
