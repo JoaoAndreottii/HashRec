@@ -94,6 +94,3 @@ Se der erro ao gerar graficos, verifique se o arquivo `resultados.csv` existe na
 
 Se não abrir o navegador automatico, abra o arquivo `graficos.html` manualmente.
 
-## Frase importante
-
-"Distribuições mais uniformes reduzem o custo médio no encadeamento separado."
